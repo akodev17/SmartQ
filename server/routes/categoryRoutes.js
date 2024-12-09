@@ -4,7 +4,8 @@ import {
     getCategory,
     createCategory,
     updateCategory,
-    deleteCategory
+    deleteCategory,
+    searchCategory
 } from '../controllers/categoryController.js';
 import { protect, authorize } from '../middleware/auth.js';
 
@@ -21,4 +22,7 @@ router
     .put(protect, authorize('admin'), updateCategory)
     .delete(protect, authorize('admin'), deleteCategory);
 
+router
+    .route('/search/:name')
+    .get(searchCategory)
 export default router;
