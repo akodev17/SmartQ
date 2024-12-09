@@ -14,12 +14,12 @@ export const getCategories = asyncHandler(async (req, res) => {
 // @access  Public
 export const getCategory = asyncHandler(async (req, res) => {
     const category = await Category.findById(req.params.id).populate('createdBy', 'name email');
-    
+
     if (!category) {
         res.status(404);
         throw new Error('Category not found');
     }
-    
+
     res.json(category);
 });
 
@@ -71,3 +71,14 @@ export const deleteCategory = asyncHandler(async (req, res) => {
     await category.remove();
     res.json({ message: 'Category removed' });
 });
+
+export const searchCategory = asyncHandler(async (req, res) => {
+    const { query } = req.query;
+    const categories = await Category.find({
+        $or: [
+            { name: { $regex: query, $options: 'i' } },
+            { description: { $regex: query, $options: 'i' } }
+        ]
+    }).populate('createdBy', 'name email');
+    res.json(categories);
+})
