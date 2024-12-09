@@ -1,0 +1,81 @@
+SmartQ API Endpoints
+
+Auth Routes
+
+- POST /api/auth/register
+  - Description: Register a new user
+  - Body: { name, email, password }
+
+- POST /api/auth/login
+  - Description: Login a user
+  - Body: { email, password }
+
+- GET /api/auth/me
+  - Description: Get current logged-in user
+  - Headers: { Authorization: Bearer <token> }
+
+Admin Endpoints
+
+- GET /api/users
+  - Description: Get all users (only accessible by admin)
+
+- GET /api/users/:id
+  - Description: Get a single user (only accessible by admin)
+
+- PUT /api/users/:id
+  - Description: Update a user's role (only accessible by admin)
+  - Headers: { Authorization: Bearer <token> }
+  - Body: { role }
+
+- DELETE /api/users/:id
+  - Description: Delete a user (only accessible by admin)
+  - Headers: { Authorization: Bearer <token> }
+
+Category Routes
+
+- GET /api/categories
+  - Description: Get all categories
+
+- GET /api/categories/:id
+  - Description: Get a single category
+
+- POST /api/categories
+  - Description: Create a new category
+  - Headers: { Authorization: Bearer <token> }
+  - Body: { name, description }
+
+- **PUT** /api/categories/:id
+  - Description: Update a category
+  - Headers: { Authorization: Bearer <token> }
+  - Body: { name, description }
+
+- **DELETE** /api/categories/:id
+  - Description: Delete a category
+  - Headers: { Authorization: Bearer <token> }
+
+## Question Routes
+
+- **GET** /api/questions
+  - Description: Get all questions
+
+- **GET** /api/questions/:id
+  - Description: Get a single question
+
+- **POST** /api/questions
+  - Description: Create a new question
+  - Headers: { Authorization: Bearer <token> }
+  - Body: { title, description, category, difficulty, points, correctAnswer, options, explanation }
+
+- **PUT** /api/questions/:id
+  - Description: Update a question
+  - Headers: { Authorization: Bearer <token> }
+  - Body: { title, description, difficulty, points }
+
+- **DELETE** /api/questions/:id
+  - Description: Delete a question
+  - Headers: { Authorization: Bearer <token> }
+
+- **POST** /api/questions/:id/check
+  - Description: Check an answer
+  - Headers: { Authorization: Bearer <token> }
+  - Body: { answer }

@@ -1,0 +1,24 @@
+server/
+├── config/
+│   └── database.js
+├── models/
+│   ├── User.js
+│   ├── Category.js
+│   ├── Question.js
+│   ├── Option.js
+│   ├── Quiz.js
+│   ├── UserQuiz.js
+│   └── UserAnswer.js
+├── controllers/
+│   ├── authController.js
+│   ├── quizController.js
+│   └── userController.js
+├── routes/
+│   ├── auth.js
+│   ├── quiz.js
+│   └── user.js
+├── middleware/
+│   ├── auth.js
+│   └── error.js
+├── .env
+└── server.js

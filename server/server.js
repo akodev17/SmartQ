@@ -1,36 +1,36 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import connectDB from './config/database.js';
+import dotenv from 'dotenv';
+import authRoutes from './routes/authRoutes.js';
+import categoryRoutes from './routes/categoryRoutes.js';
+import questionRoutes from './routes/questionRoutes.js';
+import userRoutes from './routes/userRoutes.js'; // Import user routes
+import errorHandler from './middleware/error.js';
 
 dotenv.config();
 
 const app = express();
+
+// Connect to Database
+connectDB();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// starter routes
-app.get('/', (req, res) => {
-    res.send('SmartQ API is running...');
-});
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/categories', categoryRoutes);
+app.use('/api/questions', questionRoutes);
+app.use('/api/users', userRoutes); // Use user routes
 
-// stater error handler middleware
-app.use((err, req, res, next) => {
-    const statusCode = err.statusCode || 500;
-    res.status(statusCode).json({
-        message: err.message,
-        stack: process.env.NODE_ENV === 'production' ? null : err.stack,
-    });
-});
+// Error handling middleware
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-// connect to database
-connectDB().then(() => {
-    app.listen(PORT, () => {
-        console.log(`Server is running on port ${PORT}`);
-    });
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
