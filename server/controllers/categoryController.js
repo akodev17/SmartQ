@@ -73,12 +73,12 @@ export const deleteCategory = asyncHandler(async (req, res) => {
 });
 
 export const searchCategory = asyncHandler(async (req, res) => {
-    const { query } = req.query;
+    const query = req.query.query;
     const categories = await Category.find({
         $or: [
             { name: { $regex: query, $options: 'i' } },
             { description: { $regex: query, $options: 'i' } }
         ]
-    }).populate('createdBy', 'name email');
+    });
     res.json(categories);
 })

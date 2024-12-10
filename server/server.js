@@ -6,6 +6,7 @@ import authRoutes from './routes/authRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import questionRoutes from './routes/questionRoutes.js';
 import userRoutes from './routes/userRoutes.js'; // Import user routes
+import searchRoutes from './routes/searchRoutes.js';
 import errorHandler from './middleware/error.js';
 
 dotenv.config();
@@ -25,6 +26,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/questions', questionRoutes);
 app.use('/api/users', userRoutes); // Use user routes
+app.use('/api/search', searchRoutes); // Add search routes
 
 // Error handling middleware
 app.use(errorHandler);
