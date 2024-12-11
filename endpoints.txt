@@ -16,20 +16,20 @@ Auth Routes
 
 Admin Endpoints
 
-- GET /api/users
-  - Description: Get all users (only accessible by admin)
+  - GET /api/users
+    - Description: Get all users (only accessible by admin)
 
-- GET /api/users/:id
-  - Description: Get a single user (only accessible by admin)
+  - GET /api/users/:id
+    - Description: Get a single user (only accessible by admin)
 
-- PUT /api/users/:id
-  - Description: Update a user's role (only accessible by admin)
-  - Headers: { Authorization: Bearer <token> }
-  - Body: { role }
+  - PUT /api/users/:id
+    - Description: Update a user's role (only accessible by admin)
+    - Headers: { Authorization: Bearer <token> }
+    - Body: { role }
 
-- DELETE /api/users/:id
-  - Description: Delete a user (only accessible by admin)
-  - Headers: { Authorization: Bearer <token> }
+  - DELETE /api/users/:id
+    - Description: Delete a user (only accessible by admin)
+    - Headers: { Authorization: Bearer <token> }
 
 Category Routes
 
@@ -79,3 +79,9 @@ Category Routes
   - Description: Check an answer
   - Headers: { Authorization: Bearer <token> }
   - Body: { answer }
+
+## Search routes
+
+- **GET** api/search/categories
+- **GET** api/search/questions
+- **GET** api/search/advanced
